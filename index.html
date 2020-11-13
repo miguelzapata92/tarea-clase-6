@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
 
@@ -14,14 +15,14 @@
 
         <div>
             <em>¿Me podes decir cuántas personas integran tu grupo familiar?</em>
-    
-            <br>
-
+        </div>
+        
+        <div>
             <input type="number" id="numero-integrantes" placeholder="Ej: 4">
             
             <button type="button" id="cargar-integrantes">Cargar</button>
 
-            <button type="reset">Limpiar</button>
+            <button type="reset" id="resetear">Limpiar</button>
 
     
         </div>
@@ -33,12 +34,14 @@
         <div id="boton-calcular" style="display:none;">
             
             <button id="calcular-edades" type="submit ">Calcular</button>
-            <button id="resetear" type="reset">Limpiar</button>
+            
         </div>
 
-        <div id="resultado">
+        <div class = "resultado">
             <em id = "edad-mas-grande"></em>
+            <br>
             <em id = "edad-mas-chica"></em>
+            <br>
             <em id = "edad-promedio"></em>
                 
         </div>

@@ -1,3 +1,15 @@
+
+    /*
+TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
+Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
+Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad, la menor edad y el promedio del grupo familiar.
+
+Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
+*/
+
+
+
+
 //guardo el boton cargar
 
 const $botonCargar = document.querySelector("#cargar-integrantes")
@@ -7,7 +19,8 @@ $botonCargar.onclick = function() {
     const $numeroIntegrantes = Number(document.querySelector("#numero-integrantes").value)
 
     const listaIntegrante = document.querySelector("#agregar-integrantes")
-
+    
+    borrarIntegrantesAnteriores()
 
     for( i = 0; i < $numeroIntegrantes; ++i){
 
@@ -25,6 +38,8 @@ $botonCargar.onclick = function() {
     return false
 
 }
+
+
 
 //describo la función
 
@@ -51,6 +66,40 @@ function crearIntegrante() {
 
     return integrante
 }
+
+document.querySelector("#resetear").onclick = resetear
+
+function resetear() {
+    borrarIntegrantesAnteriores()
+    borrarBotones()
+    borrarResultado()
+}
+
+function borrarResultado() {
+    document.querySelector(".resultado").className = "oculto"
+}
+
+function borrarBotones() {
+    document.querySelector("#calcular-edades").className = "oculto"
+}
+
+
+function borrarIntegrantesAnteriores() {
+    const $integrantes = document.querySelectorAll(".integrantes")
+
+    for(i = 0; i < $integrantes.length; i++) {
+        $integrantes[i].remove()
+    }
+}
+
+
+
+
+
+//operaciones
+
+
+
 
 const divResultado = document.querySelector("#resultado")
 
@@ -82,7 +131,7 @@ $botonCalcularEdades.onclick = function() {
 function calcularEdadMayor(edades) {
     let edadMayor = Math.max(...edades)
     
-    return `el más viejito tiene ${edadMayor} años`
+    return `El más viejito tiene ${edadMayor} años`
 }
 
 
@@ -90,7 +139,7 @@ function calcularEdadMayor(edades) {
 function calcularEdadMenor(edades) {
     let edadMenor = Math.min(...edades)
 
-    return `el más jóven tiene ${edadMenor} años`
+    return `El más jóven tiene ${edadMenor} años`
 }
 
 function calcularPromedioEdad(edades) {
@@ -106,41 +155,4 @@ function calcularPromedioEdad(edades) {
 
 
 
-/*
-let mayorNumero = numeros[0];
-for (let i = 1; i < numeros.length; i++) {
-  if (numeros[i] > mayorNumero) {
-    mayorNumero = numeros[i];
-  }
-}
 
-return mayorNumero;
-}
-*/
-/*
-    //cargo en una constante las edades que se cargan
-
-    const $arrayInput = document.querySelectorAll(".edadesIntegrantes").value
-
-    //creo el array vacío donde voy a cargar las edades
-    let $arrayEdades = []
-
-    for(i = 0; i < $arrayInput.length; i++) {
-        $arrayEdades.push(Number($arrayInput[i].innerText))
-    }
-
-    let $edadMasGrande = Math.max(...$arrayEdades)
-
-    resultado1 = document.querySelector("edad-mas-grande")
-
-    resultado1.innerText = $edadMasGrande
-
-    let $edadMasChica = Math.min(...$arrayEdades)
-
-    resultado2 = document.querySelector("#edad-mas-chica")
-
-    resultado2.innerText = $edadMasChica
-
-    return false
-    
-}*/
