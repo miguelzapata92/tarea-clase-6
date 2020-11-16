@@ -8,27 +8,20 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 */
 
 
-
-
-//guardo el boton cargar
-
 const $botonCargar = document.querySelector("#cargar-integrantes")
 
 $botonCargar.onclick = function() {
 
-    const $numeroIntegrantes = Number(document.querySelector("#numero-integrantes").value)
+    const numeroIntegrantes = Number(document.querySelector("#numero-integrantes").value)
 
-    const listaIntegrante = document.querySelector("#agregar-integrantes")
+    const $listaIntegrante = document.querySelector("#agregar-integrantes")
     
     borrarIntegrantesAnteriores()
 
-    for( i = 0; i < $numeroIntegrantes; ++i){
-
-        //llamo a la funcion que se ejecuta
+    for( i = 0; i < numeroIntegrantes; ++i){
         
-        listaIntegrante.appendChild(crearIntegrante())
+        $listaIntegrante.appendChild(crearIntegrante())
         
-
     }
 
     document.querySelector("#boton-calcular").style.display = "block";
@@ -38,10 +31,6 @@ $botonCargar.onclick = function() {
     return false
 
 }
-
-
-
-//describo la función
 
 function crearIntegrante() {
     let integrante = document.createElement("li")
@@ -83,7 +72,6 @@ function borrarBotones() {
     document.querySelector("#calcular-edades").className = "oculto"
 }
 
-
 function borrarIntegrantesAnteriores() {
     const $integrantes = document.querySelectorAll(".integrantes")
 
@@ -92,14 +80,7 @@ function borrarIntegrantesAnteriores() {
     }
 }
 
-
-
-
-
 //operaciones
-
-
-
 
 const divResultado = document.querySelector("#resultado")
 
@@ -115,31 +96,27 @@ $botonCalcularEdades.onclick = function() {
         edades.push(Number($edades[i].value))
     }
     
+    document.querySelector("#edad-mas-grande").innerText = `El más viejito tiene ${calcularEdadMayor(edades)} años`
 
-    document.querySelector("#edad-mas-grande").innerText = calcularEdadMayor(edades)
+    document.querySelector("#edad-mas-chica").innerText = `El más jóven tiene ${calcularEdadMenor(edades)} años`
 
-    document.querySelector("#edad-mas-chica").innerText = calcularEdadMenor(edades)
-
-    document.querySelector("#edad-promedio").innerText = calcularPromedioEdad(edades)
+    document.querySelector("#edad-promedio").innerText = `El promedio de edad es de  ${calcularPromedioEdad(edades)} años`
 
     return false
 
 }
 
-
-
 function calcularEdadMayor(edades) {
     let edadMayor = Math.max(...edades)
+
+    return edadMayor
     
-    return `El más viejito tiene ${edadMayor} años`
 }
-
-
-
+    
 function calcularEdadMenor(edades) {
     let edadMenor = Math.min(...edades)
 
-    return `El más jóven tiene ${edadMenor} años`
+    return edadMenor
 }
 
 function calcularPromedioEdad(edades) {
@@ -149,7 +126,7 @@ function calcularPromedioEdad(edades) {
     }
     promedio = totalDeEdades/edades.length
 
-    return `El promedio de edad es de ${promedio} años`
+    return promedio
 }
 
 
